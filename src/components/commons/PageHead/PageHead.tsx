@@ -1,10 +1,10 @@
-import Head from 'next/head';
+import Head from "next/head";
 
 interface PropTypes {
-  title: string;
+  title?: string;
 }
 const PageHead = (props: PropTypes) => {
-  const { title = 'Acara' } = props;
+  const { title = "Acara" } = props;
   return (
     <Head>
       <title>{title}</title>
