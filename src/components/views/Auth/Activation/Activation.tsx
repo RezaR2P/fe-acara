@@ -1,0 +1,57 @@
+import { Button } from "@heroui/react";
+import Image from "next/image";
+import { useRouter } from "next/router";
+
+interface PropTypes {
+  status: "success" | "failed";
+}
+
+const Activation = (props: PropTypes) => {
+  const router = useRouter();
+  const { status } = props;
+  return (
+    <div className="flex min-h-screen w-screen flex-col items-center justify-center p-4">
+      <div className="flex flex-col items-center justify-center gap-10">
+        <Image
+          className="h-auto w-40 object-contain lg:w-48"
+          src="/images/general/logo.svg"
+          alt="Logo"
+          width={180}
+          height={180}
+          priority
+        />
+        <Image
+          className="h-auto w-64 object-contain sm:w-80"
+          src={
+            status === "success"
+              ? "/images/ilustrations/success.svg"
+              : "/images/ilustrations/pending.svg"
+          }
+          alt="success"
+          width={300}
+          height={300}
+          priority
+        />
+      </div>
+      <div className="flex flex-col items-center gap-2 text-center">
+        <h1 className="text-danger/80 text-3xl font-bold">
+          {status === "success" ? "Activation Success" : "Activation Failed"}
+        </h1>
+        <p className="text-muted text-xl font-bold">
+          {status === "success"
+            ? "Thank you for register account in acara"
+            : "Confirmation code is invalid"}
+        </p>
+        <Button
+          className="border-danger text-danger mt-2 w-fit"
+          variant="outline"
+          onClick={() => router.push("/")}
+        >
+          Back to Home
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export default Activation;
