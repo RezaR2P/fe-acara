@@ -60,7 +60,7 @@ const Register = () => {
             priority
           />
           <div className="text-center md:text-left">
-            <h2 className="text-danger text-lg font-bold sm:text-xl">
+            <h2 className="text-danger text-2xl font-bold sm:text-2xl">
               Create Account
             </h2>
             <p className="text-xs text-gray-500 sm:text-sm">
@@ -135,7 +135,7 @@ const Register = () => {
                   <TextField
                     name="email"
                     type="email"
-                    isInvalid={errors.userName !== undefined}
+                    isInvalid={errors.email !== undefined}
                   >
                     <Label>Email</Label>
                     <Input
