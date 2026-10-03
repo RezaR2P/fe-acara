@@ -27,12 +27,7 @@ export default function App({
   return (
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
-        <main
-          className={cn(
-            inter.className,
-            "flex min-h-screen w-full items-center justify-center overflow-x-hidden p-4 md:p-8",
-          )}
-        >
+        <main className={cn(inter.className)}>
           <Component {...pageProps} />
         </main>
       </QueryClientProvider>
