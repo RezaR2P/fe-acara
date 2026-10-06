@@ -95,7 +95,7 @@ const DashboardLayoutSidebar = ({
                 className={cn("h-11 rounded-lg px-3", {
                   // Style saat menu aktif
                   "bg-danger text-danger-foreground font-medium":
-                    item.href === router.pathname,
+                    router.pathname.startsWith(item.href),
                 })}
               >
                 <div className="flex items-center gap-3">

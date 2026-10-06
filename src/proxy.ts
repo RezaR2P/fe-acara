@@ -4,7 +4,7 @@ import { JWTExtended } from "./types/Auth";
 import { getToken } from "next-auth/jwt";
 import enviroment from "./config/enviroment";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const token: JWTExtended | null = await getToken({
     req: request,
     secret: enviroment.AUTH_SECRET,
