@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ILogin } from "@/types/Auth";
-import authServices from "@/services/auth.service";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
@@ -20,7 +19,7 @@ const useLogin = () => {
     return setIsVisible(!isVisible);
   };
 
-  const callbackUrl: string = (router.query.callbackURL as string) || "/";
+  const callbackUrl: string = (router.query.callbackUrl as string) || "/";
 
   const {
     control,
@@ -38,8 +37,9 @@ const useLogin = () => {
       redirect: false,
       callbackUrl,
     });
-    if (result?.error && result?.status === 401) {
-      throw new Error("Email or Username not match With your Password");
+
+    if (!result || result.error) {
+      throw new Error("Email or username does not match your password");
     }
   };
 
