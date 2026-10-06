@@ -113,8 +113,13 @@ const DashboardLayoutSidebar = ({
             variant="danger"
             fullWidth
             size="lg"
+            type="button"
             className="flex justify-start gap-2 rounded-lg px-3"
-            onClick={() => signOut()}
+            onPress={() =>
+              signOut({
+                callbackUrl: `${window.location.origin}/auth/login`,
+              })
+            }
           >
             <CiLogout className="text-xl" />
             <span>Logout</span>
