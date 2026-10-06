@@ -6,6 +6,29 @@ import { IRegister } from "@/types/Auth";
 import authServices from "@/services/auth.service";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
+import axios from "axios";
+
+interface RegisterErrorResponse {
+  message?: string;
+  error?: string;
+}
+
+const getRegisterErrorMessage = (error: unknown) => {
+  if (axios.isAxiosError<RegisterErrorResponse>(error)) {
+    const responseMessage =
+      error.response?.data?.message || error.response?.data?.error;
+
+    if (responseMessage) {
+      return responseMessage;
+    }
+  }
+
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  return "Registration failed. Please try again.";
+};
 
 const registerSchema = yup.object().shape({
   fullName: yup.string().required("Please Input Your Full Name"),
@@ -57,7 +80,7 @@ const useRegister = () => {
     mutationFn: registerServices,
     onError(error) {
       setError("root", {
-        message: error.message,
+        message: getRegisterErrorMessage(error),
       });
     },
     onSuccess: () => {
